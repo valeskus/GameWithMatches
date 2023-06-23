@@ -38,7 +38,6 @@ module.exports = {
           'uri',
           'axios',
           'tsx',
-          'dotenv',
         ],
       },
     ],
