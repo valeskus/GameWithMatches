@@ -7,5 +7,17 @@ export const useHomeController = () => {
     navigation.navigate('Game', { isAIFirst });
   };
 
-  return { startGame };
+  const goToHistory = () => {
+    navigation.navigate('History');
+  };
+
+  const goToOptions = () => {
+    navigation.navigate('Options');
+  };
+
+  return {
+    startGame,
+    goToHistory,
+    goToOptions,
+  };
 };

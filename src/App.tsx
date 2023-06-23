@@ -8,6 +8,8 @@ import { store } from '@stores/rootStore';
 
 import { Home } from './screens/Home';
 import { Game } from './screens/Game';
+import { History } from './screens/History';
+import { Options } from './screens/Options/Options';
 
 if (
   Platform.OS === 'android' &&
@@ -21,6 +23,8 @@ export type RootStackParamList = {
   Game: {
     isAIFirst: boolean;
   };
+  History: undefined;
+  Options: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -43,6 +47,14 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Game"
             component={Game}
+          />
+          <Stack.Screen
+            name="History"
+            component={History}
+          />
+          <Stack.Screen
+            name="Options"
+            component={Options}
           />
         </Stack.Navigator>
       </NavigationContainer>
