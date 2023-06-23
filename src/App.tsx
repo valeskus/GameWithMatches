@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Platform, SafeAreaView, UIManager } from 'react-native';
+import { Platform, UIManager } from 'react-native';
 
 if (
   Platform.OS === 'android' &&
