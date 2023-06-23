@@ -6,11 +6,13 @@ import { styles } from './styles';
 interface Props {
   onPress: () => void;
   title: string;
+  isDisabled: boolean;
 }
 
-export function Button({ onPress, title }: Props): JSX.Element {
+export function SquareButton({ onPress, title, isDisabled }: Props): JSX.Element {
   return (
     <Pressable
+      disabled={isDisabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,

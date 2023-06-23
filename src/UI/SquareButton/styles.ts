@@ -5,8 +5,8 @@ import { Colors } from '../Colors';
 export const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
-    width: 250,
-    height: 50,
+    width: 100,
+    height: 100,
     backgroundColor: Colors.background,
     shadowColor: Colors.shadow,
     shadowOpacity: 0.5,
