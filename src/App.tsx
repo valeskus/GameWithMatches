@@ -18,7 +18,9 @@ if (
 
 export type RootStackParamList = {
   Home: undefined;
-  Game: undefined;
+  Game: {
+    isAIFirst: boolean;
+  };
 };
 
 const Stack = createNativeStackNavigator();

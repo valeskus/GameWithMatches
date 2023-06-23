@@ -3,5 +3,5 @@
 
 echo "Lint mobile app:"
 yarn lint:ts
-yarn lint --fix
+yarn lint
 
