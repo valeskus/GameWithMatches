@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { HistoryItemModel } from 'src/models';
 
 export enum GameHistoryActions {
-  ADD = '@recipes/add',
+  ADD = '@history/add',
 }
 
 const actionSetGameHistoryItem = (payload: HistoryItemModel) => ({

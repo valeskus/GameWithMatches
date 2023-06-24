@@ -1,15 +1,20 @@
+
 import { useCallback, useState } from 'react';
 
-export const useOptionController = () => {
-  const [amountsMatches, setAmountsMatches] = useState(25);
-  const [oneMovesMatches, setOneMovesMatches] = useState(3);
+import * as OptionsStore from '@stores/options';
 
+export const useOptionController = () => {
+  const [allMatches, setAllMatches] = useState(25);
+  const [matchesPerMove, setMatchesPerMove] = useState(3);
+
+  const setOptions = OptionsStore.useSetOptions();
   const onSubmit = useCallback(() => {
-  }, [amountsMatches, oneMovesMatches]);
+    setOptions({ allMatches, matchesPerMove });
+  }, [allMatches, matchesPerMove]);
 
   return {
-    setAmountsMatches,
-    setOneMovesMatches,
+    setAllMatches,
+    setMatchesPerMove,
     onSubmit,
   };
 

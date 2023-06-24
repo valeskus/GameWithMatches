@@ -7,7 +7,7 @@ import { styles } from './styles';
 import { useOptionController } from './useOptionController';
 
 export function Options(): JSX.Element {
-  const { setAmountsMatches, setOneMovesMatches, onSubmit } = useOptionController();
+  const { setAllMatches, setMatchesPerMove, onSubmit } = useOptionController();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -15,13 +15,13 @@ export function Options(): JSX.Element {
         <View style={styles.optionItem}>
           <Text style={styles.label}>Enter the number of matches for pile:</Text>
           <TextInput style={styles.input} maxLength={3} keyboardType="numeric"
-            onChangeText={(value) => setAmountsMatches(+value)}
+            onChangeText={(value) => setAllMatches(+value)}
           />
         </View>
         <View style={styles.optionItem}>
           <Text style={styles.label}>Enter the number of matches for one move:</Text>
           <TextInput style={styles.input} maxLength={3} keyboardType="numeric"
-            onChangeText={(value) => setOneMovesMatches(+value)}
+            onChangeText={(value) => setMatchesPerMove(+value)}
           />
         </View>
       </View>

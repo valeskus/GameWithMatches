@@ -3,3 +3,8 @@ export interface HistoryItemModel {
   playerScore: number;
   AIScore: number;
 }
+
+export interface OptionsModel {
+  allMatches: number;
+  matchesPerMove: number;
+}
