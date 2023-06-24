@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   gamePad: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -15,6 +19,9 @@ export const styles = StyleSheet.create({
   },
   gameButton: {
     width: 100,
+  },
+  wrapper: {
+    flex: 1,
   },
   gameContainer: {
     flex: 1,

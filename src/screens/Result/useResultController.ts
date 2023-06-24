@@ -1,24 +1,34 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useCallback } from 'react';
 
+import * as GameHistoryStore from '@stores/gameHistory';
+
 export const useResultController = () => {
-  const { params } =
-    useRoute<RouteProp<ReactNavigation.RootParamList, 'Result'>>();
   const navigation = useNavigation();
 
-  const goToMenu = () => {
-    navigation.navigate('Home');
+  const { history } = GameHistoryStore.useGameHistoryStore();
+
+  const { winner, AIScore, playerScore } = history[history.length - 1] || {
+    winner: 'N/A',
+    AIScore: NaN,
+    playerScore: NaN,
   };
 
-  const onRestart = useCallback(() => {
-    navigation.navigate('Game', { isAIFirst: params.isAIFirst });
-  }, [params]);
+  const goToMenu = useCallback(() => {
+    navigation.dispatch(CommonActions.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'Home',
+        },
+      ],
+    }));
+  }, []);
 
   return {
-    winner: params.winner,
-    AIScore: params.AIScore,
-    playerScore: params.playerScore,
+    winner,
+    AIScore,
+    playerScore,
     goToMenu,
-    onRestart,
   };
 };

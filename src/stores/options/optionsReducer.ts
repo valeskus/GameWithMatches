@@ -1,32 +1,27 @@
 import * as Redux from 'redux';
 
-import { OptionsActions } from './optionsAction';
+import { OptionsActions } from './optionsActions';
 
 import { OptionsModel } from 'src/models';
 
-export interface OptionsStoreState {
-  options: OptionsModel;
+export interface OptionsStoreState extends OptionsModel {
 }
 
 const initialState: OptionsStoreState = {
-  options: {
-    allMatches: 25,
-    matchesPerMove: 3,
-  },
+  allMatches: 25,
+  matchesPerMove: 3,
 };
 
 export function optionsReducer(
   state = initialState,
   action: Redux.AnyAction,
-) {
+): OptionsStoreState {
   switch (action.type) {
     case OptionsActions.SET: {
-      const { options } = action.payload;
+      const { options } = action.payload as { options: OptionsModel };
 
       return {
-        options: {
-          ...options,
-        },
+        ...options,
       };
     }
 

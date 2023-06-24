@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform, UIManager } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,13 +11,6 @@ import { History } from './screens/History';
 import { Options } from './screens/Options';
 import { Result } from './screens/Result';
 
-if (
-  Platform.OS === 'android' &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
 export type RootStackParamList = {
   Home: undefined;
   Game: {
@@ -26,12 +18,7 @@ export type RootStackParamList = {
   };
   History: undefined;
   Options: undefined;
-  Result: {
-    winner: string;
-    AIScore: number;
-    playerScore: number;
-    isAIFirst: boolean;
-  };
+  Result: undefined;
 };
 
 const Stack = createNativeStackNavigator();

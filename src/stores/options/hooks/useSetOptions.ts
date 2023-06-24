@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as Redux from 'react-redux';
 
-import { setOptions } from '../optionsAction';
-
-import { OptionsModel } from 'src/models';
+import { setOptions } from '../optionsActions';
+import { OptionsModel } from '../../../models';
 
 export const useSetOptions = () => {
   const dispatch = Redux.useDispatch();

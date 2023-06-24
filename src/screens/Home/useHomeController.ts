@@ -16,7 +16,8 @@ export const useHomeController = () => {
   };
 
   return {
-    startGame,
+    startGameAIFist: () => startGame(true),
+    startGamePlayerFist: () => startGame(false),
     goToHistory,
     goToOptions,
   };

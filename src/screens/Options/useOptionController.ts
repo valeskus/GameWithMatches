@@ -1,53 +1,67 @@
-
 import { useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import * as OptionsStore from '@stores/options';
 
 export const useOptionController = () => {
-  const [allMatches, setAllMatches] = useState(25);
-  const [matchesPerMove, setMatchesPerMove] = useState(3);
-  const [invalidAllMatches, setInvalidAllMatches] = useState<boolean>(false);
-  const [invalidPerMove, setInvalidPerMove] = useState<boolean>(false);
+  const setOptions = OptionsStore.useSetOptions();
+  const options = OptionsStore.useOptionsStore();
+
+  const [allMatches, setAllMatches] = useState(options.allMatches);
+  const [allMatchesInputErrorMessage, setAllMatchesInputErrorMessage] = useState('');
+
+  const [matchesPerMove, setMatchesPerMove] = useState(options.matchesPerMove);
+  const [matchesPerMoveInputErrorMessage, setMatchesPerMoveInputErrorMessage] = useState('');
 
   const navigation = useNavigation();
-  const setOptions = OptionsStore.useSetOptions();
 
-  const checkMatchesInput = useCallback(() => {
+  const validateAllMatchesInput = useCallback(() => {
     if (allMatches % 2 === 0) {
-      setInvalidAllMatches(true);
-
-      return false;
+      setAllMatchesInputErrorMessage('The number of matches for the pile must be an odd number !');
     }
+  }, [allMatches]);
 
+  const validateMatchesPerMoveInput = useCallback(() => {
     if (matchesPerMove < 1) {
-      setInvalidPerMove(true);
-
-      return false;
-
+      setMatchesPerMoveInputErrorMessage('The number of matches for the pile must be an odd number !');
     }
+  }, [matchesPerMove]);
 
-    return true;
-  }, [allMatches, matchesPerMove]);
+  const onChangeAllMatches = useCallback((value: string) => {
+    setAllMatchesInputErrorMessage('');
 
-  const onSubmit = useCallback(() => {
-    const valid = checkMatchesInput();
-    if (!valid) {
+    setAllMatches(+value);
+  }, []);
+
+  const onChangeMatchesPerMove = useCallback((value: string) => {
+    setMatchesPerMoveInputErrorMessage('');
+
+    setMatchesPerMove(+value);
+  }, []);
+
+  const isApplyDisabled = !!allMatchesInputErrorMessage || !!matchesPerMoveInputErrorMessage;
+
+  const onApply = useCallback(() => {
+    if (isApplyDisabled) {
       return;
     }
 
     setOptions({ allMatches, matchesPerMove });
+
     navigation.navigate('Home');
-  }, [allMatches, matchesPerMove, checkMatchesInput]);
+  }, [isApplyDisabled, allMatches, matchesPerMove, setOptions]);
 
   return {
-    setAllMatches,
-    setMatchesPerMove,
-    onSubmit,
-    invalidAllMatches,
-    invalidPerMove,
+    allMatchesInputErrorMessage,
+    matchesPerMoveInputErrorMessage,
+    validateAllMatchesInput,
+    validateMatchesPerMoveInput,
+    onChangeAllMatches,
+    onChangeMatchesPerMove,
+    onApply,
     matchesPerMove,
     allMatches,
+    isApplyDisabled,
   };
 
 };

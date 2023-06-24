@@ -1,17 +1,18 @@
 import { Dispatch } from 'redux';
 
-import { ResultItemModel } from 'src/models';
+import { ResultItemModel } from '../../models';
 
 export enum GameHistoryActions {
   ADD = '@history/add',
 }
 
-const actionAddGameHistoryItem = (payload: ResultItemModel) => ({
+const actionAddGameHistoryItem = (historyItem: ResultItemModel) => ({
   type: GameHistoryActions.ADD,
-  payload: { historyItem: payload },
+  payload: { historyItem },
 });
 
-export const AddGameHistoryItem =  (historyItem: ResultItemModel,
+export const addGameHistoryItem =  (
+  historyItem: ResultItemModel,
   dispatch: Dispatch,
 ) => {
   dispatch(actionAddGameHistoryItem(historyItem));

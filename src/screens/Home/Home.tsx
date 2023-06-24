@@ -8,7 +8,7 @@ import { styles } from './styles';
 import { useHomeController } from './useHomeController';
 
 export function Home(): JSX.Element {
-  const { startGame, goToHistory, goToOptions } = useHomeController();
+  const { startGameAIFist, startGamePlayerFist, goToHistory, goToOptions } = useHomeController();
 
   return (
     <SafeAreaView style={styles.homeScreen}>
@@ -18,17 +18,16 @@ export function Home(): JSX.Element {
       </View>
       <View style={styles.menuList}>
         <View style={styles.menuItem}>
-          <Button onPress={() => startGame(true)} title={'Start (AI firs)'} />
-          <Button onPress={() => startGame(false)} title={'Start (Player firs)'} />
+          <Button onPress={startGameAIFist} title="Start (AI first)" />
+          <Button onPress={startGamePlayerFist} title="Start (Player first)" />
         </View>
         <View style={styles.menuItem}>
-          <Button onPress={goToOptions} title={'Game options'} />
+          <Button onPress={goToOptions} title="Game options" />
         </View>
         <View style={styles.menuItem}>
-          <Button onPress={goToHistory} title={'History'} />
+          <Button onPress={goToHistory} title="History" />
         </View>
       </View>
-
     </SafeAreaView>
   );
 }

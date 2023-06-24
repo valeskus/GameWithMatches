@@ -9,16 +9,13 @@ import { styles } from './styles';
 import { useResultController } from './useResultController';
 
 export function Result(): JSX.Element {
-  const { winner, AIScore, playerScore, goToMenu, onRestart } = useResultController();
+  const { winner, AIScore, playerScore, goToMenu } = useResultController();
 
   return (
     <SafeAreaView style={styles.screen}>
       <Image source={Icons.winner} style={styles.image} />
       <ResultItem winner={winner} AIScore={AIScore} playerScore={playerScore} />
       <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <Button title="Restart" onPress={onRestart} />
-        </View>
         <View style={styles.buttonContainer}>
           <Button title="Menu" onPress={goToMenu} />
         </View>

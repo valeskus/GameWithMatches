@@ -10,17 +10,17 @@ export function History(): JSX.Element {
   const { history } = useHistoryController();
 
   return (
-    <SafeAreaView style={styles.historyScreen} >
+    <SafeAreaView style={styles.historyScreen}>
       <ScrollView>
-        {history.map((item, index) => {
-          return (<View style={styles.historyItem} key={index}>
+        {history.map((item, index) => (
+          <View style={styles.historyItem} key={index}>
             <ResultItem
               winner={item.winner}
               AIScore={item.AIScore}
               playerScore={item.playerScore}
             />
-          </View>);
-        })}
+          </View>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

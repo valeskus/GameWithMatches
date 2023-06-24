@@ -1,8 +1,8 @@
 import * as Redux from 'redux';
 
-import { GameHistoryActions } from './gameHistoryActions';
+import { ResultItemModel } from '../../models';
 
-import { ResultItemModel } from 'src/models';
+import { GameHistoryActions } from './gameHistoryActions';
 
 export interface GameHistoryStoreState {
   history: Array<ResultItemModel>;
@@ -15,14 +15,13 @@ const initialState: GameHistoryStoreState = {
 export function gameHistoryReducer(
   state = initialState,
   action: Redux.AnyAction,
-) {
+): GameHistoryStoreState {
   switch (action.type) {
     case GameHistoryActions.ADD: {
-      const { historyItem } = action.payload;
+      const { historyItem } = action.payload as { historyItem: ResultItemModel };
 
       return {
         history: [...state.history, historyItem],
-
       };
     }
 

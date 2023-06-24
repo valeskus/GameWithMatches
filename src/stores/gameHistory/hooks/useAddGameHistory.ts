@@ -1,16 +1,15 @@
 import * as React from 'react';
 import * as Redux from 'react-redux';
 
-import { AddGameHistoryItem } from '../gameHistoryActions';
-
-import { ResultItemModel } from 'src/models';
+import { addGameHistoryItem } from '../gameHistoryActions';
+import { ResultItemModel } from '../../../models';
 
 export const useAddGameHistory = () => {
   const dispatch = Redux.useDispatch();
 
   return React.useCallback(
     (historyItem: ResultItemModel) => {
-      AddGameHistoryItem(historyItem, dispatch);
+      addGameHistoryItem(historyItem, dispatch);
     },
     [dispatch],
   );

@@ -4,6 +4,9 @@ import { Colors } from '@UI/Colors';
 
 export const styles = StyleSheet.create({
   screen: {
+    flex: 1,
+  },
+  container: {
     backgroundColor: Colors.background,
     flex: 1,
     justifyContent: 'center',

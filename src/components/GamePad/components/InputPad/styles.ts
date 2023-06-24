@@ -6,18 +6,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-
-  gameButton: {
-    width: 100,
-  },
-
-  gameContainerItem: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-
   text: {
     fontSize: 18,
     marginBottom: 5,
@@ -27,14 +15,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     width: '100%',
+
+    marginBottom: 30,
   },
   labelItem: {
-    paddingHorizontal: 10,
-    height: 50,
+    marginRight: 10,
   },
   error: {
     color: 'red',
     fontSize: 15,
-  },
 
+    position: 'absolute',
+    bottom: -20,
+    left: 0,
+  },
 });

@@ -1,17 +1,18 @@
 import { Dispatch } from 'redux';
 
-import { OptionsModel } from 'src/models';
+import { OptionsModel } from '../../models';
 
 export enum OptionsActions {
   SET = '@options/set',
 }
 
-const actionSetOptions = (payload: OptionsModel) => ({
+const actionSetOptions = (options: OptionsModel) => ({
   type: OptionsActions.SET,
-  payload: { options: payload },
+  payload: { options },
 });
 
-export const setOptions = (options: OptionsModel,
+export const setOptions = (
+  options: OptionsModel,
   dispatch: Dispatch,
 ) => {
   dispatch(actionSetOptions(options));

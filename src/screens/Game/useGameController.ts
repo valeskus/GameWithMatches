@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { CommonActions, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
 
 import * as GameHistoryStore from '@stores/gameHistory';
@@ -6,97 +6,109 @@ import * as OptionsStore from '@stores/options';
 
 import { AI } from '../../AI';
 
-import { ResultItemModel } from 'src/models';
+const ai = new AI();
 
 export const useGameController = () => {
-  const { params } =
-    useRoute<RouteProp<ReactNavigation.RootParamList, 'Game'>>();
+  const {
+    params,
+  } = useRoute<RouteProp<ReactNavigation.RootParamList, 'Game'>>();
 
-  const { options } = OptionsStore.useOptionsStore();
-  const [aiMove, setAiMove] = useState<number>(0);
-  const [playerMove, setPlayerMove] = useState<number>(0);
+  const options = OptionsStore.useOptionsStore();
+
+  const [matchesLeft, setMatchesLeft] = useState<number>(options.allMatches);
+
+  const [AILastMove, setAILastMove] = useState<number>(0);
+  const [playerLastMove, setPlayerLastMove] = useState<number>(0);
+
   const [isAIMove, setIsAIMove] = useState<boolean>(params.isAIFirst);
+
   const [playerScore, setPlayerScore] = useState<number>(0);
   const [AIScore, setAIScore] = useState<number>(0);
-  const [allMatches, setAllMatches] = useState<number>(options.allMatches);
 
   const navigation = useNavigation();
   const addGameHistory = GameHistoryStore.useAddGameHistory();
 
-  const calcMatches = useCallback((count: number, matchesCount: number) => {
-    setAllMatches(matchesCount - count);
+  const decreaseMatches = useCallback((count: number, matchesCount: number) => {
+    setMatchesLeft(matchesCount - count);
 
     return matchesCount - count;
-  }, [setAllMatches]);
+  }, []);
 
-  const onAIMove = useCallback((matchesCount: number) => {
-    if (matchesCount === 0) {
-      return;
-    }
-
-    setTimeout(() => {
-      const move = AI();
-      setAiMove(move);
-      calcMatches(1, matchesCount);
-      setAIScore(AIScore + 1);
-
-      if (matchesCount === 1) {
-        return;
-      }
-
-      setIsAIMove(false);
-    }, 2000);
-
-    return ;
-  }, [setPlayerMove, AIScore, setAIScore]);
-
-  useEffect(() => {
-    if (params.isAIFirst) {
-      return onAIMove(allMatches);
-    }
-  }, [params]);
-
-  const onPlayerMove = useCallback((count: number) => {
-    if (allMatches === 0) {
-      return;
-    }
-
-    setPlayerMove(count);
-    setPlayerScore(playerScore + count);
-    const updateMatchesCount = calcMatches(count, allMatches);
-
+  const onAIMove = useCallback(async (matchesCount: number) => {
     setIsAIMove(true);
 
-    onAIMove(updateMatchesCount);
+    const move = await ai.pick({
+      matchesLeft,
+      aiNumberOfMatches: AIScore,
+      pickLimit: options.matchesPerMove,
+    });
 
-  }, [setPlayerMove, playerScore, setPlayerScore, allMatches]);
+    setAILastMove(move);
+    setAIScore(AIScore + 1);
+
+    if (!decreaseMatches(1, matchesCount)) {
+      return;
+    }
+
+    setIsAIMove(false);
+  }, [AIScore]);
+
+  const onPlayerMove = useCallback((count: number) => {
+    if (!matchesLeft) {
+      return;
+    }
+
+    setPlayerLastMove(count);
+    setPlayerScore(playerScore + count);
+
+    const updateMatchesCount = decreaseMatches(count, matchesLeft);
+
+    if (updateMatchesCount) {
+      onAIMove(updateMatchesCount);
+    }
+  }, [playerScore, matchesLeft]);
 
   const goToResult = useCallback(() => {
     const winner = AIScore % 2 === 0 ? 'AI' : 'Player';
 
-    const result: ResultItemModel = {
+    addGameHistory({
       winner,
       AIScore,
       playerScore,
-    };
-    addGameHistory(result);
-    setAllMatches(options.allMatches);
-    setPlayerScore(0);
-    setAIScore(0);
-    setPlayerMove(0);
-    setAiMove(0);
-    navigation.navigate('Result', { ...result, isAIFirst: params.isAIFirst });
+    });
+
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'Result',
+          },
+        ],
+      }),
+    );
   }, [AIScore, playerScore]);
+
+  useEffect(() => {
+    if (params.isAIFirst) {
+      onAIMove(matchesLeft);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!matchesLeft) {
+      goToResult();
+    }
+  }, [matchesLeft]);
 
   return {
     isAIFirst: params.isAIFirst,
-    goToResult,
     onPlayerMove,
     isAIMove,
-    aiMove,
-    playerMove,
+    AILastMove,
+    playerLastMove,
     playerScore,
-    allMatches,
+    matchesLeft,
     matchesPerMove: options.matchesPerMove,
   };
 };

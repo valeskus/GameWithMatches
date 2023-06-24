@@ -1,18 +1,15 @@
 import React from 'react';
-import { TextInput } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 
 import { styles } from './styles';
 
-interface Props {
-  onChange: (value: number) => void;
-  value?: number;
-}
-
-export function Input({ onChange, value }: Props): JSX.Element {
+export function Input(props: TextInputProps): JSX.Element {
   return (
-    <TextInput style={styles.input} maxLength={3} keyboardType="numeric"
-      onChangeText={(count) => onChange(+count)}
-      defaultValue={`${value}`}
+    <TextInput
+      {...props}
+      style={styles.input}
+      maxLength={3}
+      keyboardType="numeric"
       selectTextOnFocus={true}
     />
   );
