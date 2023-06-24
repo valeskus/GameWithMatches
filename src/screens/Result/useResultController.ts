@@ -2,8 +2,9 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
 export const useResultController = () => {
   const { params } =
-        useRoute<RouteProp<ReactNavigation.RootParamList, 'Result'>>();
+    useRoute<RouteProp<ReactNavigation.RootParamList, 'Result'>>();
   const navigation = useNavigation();
+
   const goToMenu = () => {
     navigation.navigate('Home');
   };
@@ -11,7 +12,7 @@ export const useResultController = () => {
   return {
     winner: params.winner,
     AIScore: params.AIScore,
-    playerScore: params.PlayerScore,
+    playerScore: params.playerScore,
     goToMenu,
   };
 };

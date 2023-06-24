@@ -2,10 +2,10 @@ import * as Redux from 'redux';
 
 import { GameHistoryActions } from './gameHistoryActions';
 
-import { HistoryItemModel } from 'src/models';
+import { ResultItemModel } from 'src/models';
 
 export interface GameHistoryStoreState {
-  history: Array<HistoryItemModel>;
+  history: Array<ResultItemModel>;
 }
 
 const initialState: GameHistoryStoreState = {

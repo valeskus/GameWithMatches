@@ -1,5 +1,5 @@
-export interface HistoryItemModel {
-  result: string;
+export interface ResultItemModel {
+  winner: string;
   playerScore: number;
   AIScore: number;
 }

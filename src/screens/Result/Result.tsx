@@ -1,7 +1,8 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import { Button } from '@UI/Button';
+import { ResultItem } from '@UI/ResultItem';
 
 import { styles } from './styles';
 import { useResultController } from './useResultController';
@@ -11,11 +12,7 @@ export function Result(): JSX.Element {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Text style={styles.title}>{winner} WIN!</Text>
-      <View style={styles.resultContainer}>
-        <Text style={styles.resultItem}>AI score: {AIScore}</Text>
-        <Text style={styles.resultItem}>Player Score: {playerScore}</Text>
-      </View>
+      <ResultItem winner={winner} AIScore={AIScore} playerScore={playerScore} />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
           <Button title="Restart" onPress={() => { }} />

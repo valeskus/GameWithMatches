@@ -29,7 +29,7 @@ export type RootStackParamList = {
   Result: {
     winner: string;
     AIScore: number;
-    PlayerScore: number;
+    playerScore: number;
   };
 };
 
