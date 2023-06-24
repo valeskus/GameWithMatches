@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   labelItem: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     flex: 5,
     height: 90,
   },

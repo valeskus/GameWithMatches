@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
   },
   scoreContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'center',
   },

@@ -9,7 +9,7 @@ import { styles } from './styles';
 import { useGameController } from './useGameController';
 
 export function Game(): JSX.Element {
-  const { onPlayerMove, aiMove, playerMove, playerScore, allMatches, goToResult } = useGameController();
+  const { onPlayerMove, aiMove, playerMove, playerScore, allMatches, goToResult, matchesPerMove } = useGameController();
 
   return (
     <SafeAreaView style={styles.gameScreen}>
@@ -27,13 +27,13 @@ export function Game(): JSX.Element {
           <Text style={styles.moveText}> move {playerMove} matches</Text>
         </View>
       </View>
-      {allMatches > 0 && <Text style={styles.text}>Choose count of matches:</Text>}
       {allMatches === 0 && (<View style={styles.resultButtonContainer}>
         <Button title="Result" onPress={goToResult} />
       </View>)}
       {allMatches > 0 && (<GamePad
         onPlayerMove={onPlayerMove}
         allMatchesCount={allMatches}
+        matchesPerMove={matchesPerMove}
                           />
       )}
       <View style={styles.scoreContainer}>

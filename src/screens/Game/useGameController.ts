@@ -52,14 +52,6 @@ export const useGameController = () => {
     setIsAIMove(false);
 
     return;
-    //  () => {
-    //   setAllMatches(options.allMatches);
-    //   setPlayerScore(0);
-    //   setAIScore(0);
-    //   setPlayerMove(0);
-    //   setAiMove(0);
-    // };
-
   }, [params]);
 
   const onPlayerMove = useCallback((count: number) => {
@@ -103,5 +95,6 @@ export const useGameController = () => {
     playerMove,
     playerScore,
     allMatches,
+    matchesPerMove: options.matchesPerMove,
   };
 };

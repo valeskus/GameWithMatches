@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    padding: 5,
+    padding: 10,
   },
   disabled: {
     backgroundColor: 'red',

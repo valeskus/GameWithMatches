@@ -1,13 +1,15 @@
 import React from 'react';
-import { SafeAreaView, TextInput, Text, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 
 import { Button } from '@UI/Button';
+import { Input } from '@UI/Input';
 
 import { styles } from './styles';
 import { useOptionController } from './useOptionController';
 
 export function Options(): JSX.Element {
-  const { setAllMatches, setMatchesPerMove, onSubmit, invalidAllMatches, invalidPerMove } = useOptionController();
+  const { setAllMatches, setMatchesPerMove, onSubmit, invalidAllMatches, invalidPerMove, matchesPerMove,
+    allMatches } = useOptionController();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -19,9 +21,7 @@ export function Options(): JSX.Element {
               The number of matches for the pile must be an odd number !
             </Text>)}
           </View>
-          <TextInput style={styles.input} maxLength={3} keyboardType="numeric"
-            onChangeText={(value) => setAllMatches(+value)}
-          />
+          <Input onChange={(value) => setAllMatches(value)} value={allMatches}/>
         </View>
         <View style={styles.optionItem}>
           <View style={styles.labelItem}>
@@ -31,9 +31,7 @@ export function Options(): JSX.Element {
             </Text>)}
 
           </View>
-          <TextInput style={styles.input} maxLength={3} keyboardType="numeric"
-            onChangeText={(value) => setMatchesPerMove(+value)}
-          />
+          <Input onChange={(value) => setMatchesPerMove(value)} value={matchesPerMove}/>
         </View>
       </View>
       <View style={styles.buttonContainer}>

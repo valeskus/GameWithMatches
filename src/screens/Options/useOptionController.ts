@@ -46,6 +46,8 @@ export const useOptionController = () => {
     onSubmit,
     invalidAllMatches,
     invalidPerMove,
+    matchesPerMove,
+    allMatches,
   };
 
 };
