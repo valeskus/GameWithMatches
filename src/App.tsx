@@ -9,7 +9,8 @@ import { store } from '@stores/rootStore';
 import { Home } from './screens/Home';
 import { Game } from './screens/Game';
 import { History } from './screens/History';
-import { Options } from './screens/Options/Options';
+import { Options } from './screens/Options';
+import { Result } from './screens/Result';
 
 if (
   Platform.OS === 'android' &&
@@ -25,6 +26,11 @@ export type RootStackParamList = {
   };
   History: undefined;
   Options: undefined;
+  Result: {
+    winner: string;
+    AIScore: number;
+    PlayerScore: number;
+  };
 };
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +61,10 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Options"
             component={Options}
+          />
+          <Stack.Screen
+            name="Result"
+            component={Result}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   },
   menuItem: {
     flex: 2,
+    width: 250,
     flexDirection: 'column',
     justifyContent: 'space-around',
   },

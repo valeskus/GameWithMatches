@@ -22,7 +22,9 @@ export function Home(): JSX.Element {
         <View style={styles.menuItem}>
           <Button onPress={goToOptions} title={'Game options'} />
         </View>
-        <Button onPress={goToHistory} title={'History'} />
+        <View style={styles.menuItem}>
+          <Button onPress={goToHistory} title={'History'} />
+        </View>
       </View>
 
     </SafeAreaView>
