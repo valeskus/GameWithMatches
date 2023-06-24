@@ -27,14 +27,22 @@ export const styles = StyleSheet.create({
   optionItem: {
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 50,
+    marginBottom: 20,
     paddingHorizontal: 20,
   },
   label: {
     fontSize: 20,
-    flex: 1,
+  },
+  labelItem: {
+    paddingHorizontal: 10,
+    flex: 5,
+    height: 90,
+  },
+  error: {
+    color: 'red',
+    fontSize: 15,
   },
   buttonContainer: {
     justifyContent: 'flex-end',
