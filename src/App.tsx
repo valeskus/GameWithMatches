@@ -30,6 +30,7 @@ export type RootStackParamList = {
     winner: string;
     AIScore: number;
     playerScore: number;
+    isAIFirst: boolean;
   };
 };
 

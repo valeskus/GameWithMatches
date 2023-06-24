@@ -51,12 +51,14 @@ export const useGameController = () => {
 
     setIsAIMove(false);
 
-    return () => {
-      setAllMatches(0);
-      setPlayerScore(0);
-      setAIScore(0);
-
-    };
+    return;
+    //  () => {
+    //   setAllMatches(options.allMatches);
+    //   setPlayerScore(0);
+    //   setAIScore(0);
+    //   setPlayerMove(0);
+    //   setAiMove(0);
+    // };
 
   }, [params]);
 
@@ -84,7 +86,12 @@ export const useGameController = () => {
       playerScore,
     };
     addGameHistory(result);
-    navigation.navigate('Result', result);
+    setAllMatches(options.allMatches);
+    setPlayerScore(0);
+    setAIScore(0);
+    setPlayerMove(0);
+    setAiMove(0);
+    navigation.navigate('Result', { ...result, isAIFirst: params.isAIFirst });
   }, [AIScore, playerScore]);
 
   return {
