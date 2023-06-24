@@ -16,7 +16,9 @@ export function Button({ onPress, title, isDisabled }: Props): JSX.Element {
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        pressed && styles.buttonPressed]
+        pressed && styles.buttonPressed,
+        isDisabled && styles.disabled,
+      ]
       }
     >
       <Text style={styles.title}>{title}</Text>

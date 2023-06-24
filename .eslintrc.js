@@ -38,6 +38,8 @@ module.exports = {
           'uri',
           'axios',
           'tsx',
+          'ai',
+          'calc'
         ],
       },
     ],

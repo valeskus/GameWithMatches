@@ -23,4 +23,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     padding: 5,
   },
+  disabled: {
+    backgroundColor: 'red',
+  },
 });
