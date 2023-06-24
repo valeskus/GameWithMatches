@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 import * as GameHistoryStore from '@stores/gameHistory';
 import * as OptionsStore from '@stores/options';
 
+import { AI } from '../../AI';
+
 import { ResultItemModel } from 'src/models';
 
 export const useGameController = () => {
@@ -32,7 +34,8 @@ export const useGameController = () => {
       return;
     }
 
-    setAiMove(1);
+    const move = AI();
+    setAiMove(move);
     calcMatches(1, matchesCount);
     setAIScore(AIScore + 1);
 
