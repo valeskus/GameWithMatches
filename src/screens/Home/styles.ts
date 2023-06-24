@@ -24,4 +24,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: '600',
+  },
 });

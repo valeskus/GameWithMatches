@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 8,
   },
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
+  },
 });

@@ -9,16 +9,16 @@ import { AI } from '../../AI';
 import { ResultItemModel } from 'src/models';
 
 export const useGameController = () => {
+  const { params } =
+    useRoute<RouteProp<ReactNavigation.RootParamList, 'Game'>>();
+
   const { options } = OptionsStore.useOptionsStore();
   const [aiMove, setAiMove] = useState<number>(0);
   const [playerMove, setPlayerMove] = useState<number>(0);
-  const [isAIMove, setIsAIMove] = useState<boolean>(false);
+  const [isAIMove, setIsAIMove] = useState<boolean>(params.isAIFirst);
   const [playerScore, setPlayerScore] = useState<number>(0);
   const [AIScore, setAIScore] = useState<number>(0);
   const [allMatches, setAllMatches] = useState<number>(options.allMatches);
-
-  const { params } =
-    useRoute<RouteProp<ReactNavigation.RootParamList, 'Game'>>();
 
   const navigation = useNavigation();
   const addGameHistory = GameHistoryStore.useAddGameHistory();
@@ -34,27 +34,26 @@ export const useGameController = () => {
       return;
     }
 
-    const move = AI();
-    setAiMove(move);
-    calcMatches(1, matchesCount);
-    setAIScore(AIScore + 1);
+    setTimeout(() => {
+      const move = AI();
+      setAiMove(move);
+      calcMatches(1, matchesCount);
+      setAIScore(AIScore + 1);
 
-    if (matchesCount === 1) {
-      return;
-    }
+      if (matchesCount === 1) {
+        return;
+      }
 
-    return setIsAIMove(false);
+      setIsAIMove(false);
+    }, 2000);
+
+    return ;
   }, [setPlayerMove, AIScore, setAIScore]);
 
   useEffect(() => {
     if (params.isAIFirst) {
-      setIsAIMove(true);
-      onAIMove(allMatches);
+      return onAIMove(allMatches);
     }
-
-    setIsAIMove(false);
-
-    return;
   }, [params]);
 
   const onPlayerMove = useCallback((count: number) => {

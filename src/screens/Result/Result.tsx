@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 
 import { Button } from '@UI/Button';
 import { ResultItem } from '@UI/ResultItem';
+import { Icons } from '@UI/Icons';
 
 import { styles } from './styles';
 import { useResultController } from './useResultController';
@@ -12,6 +13,7 @@ export function Result(): JSX.Element {
 
   return (
     <SafeAreaView style={styles.screen}>
+      <Image source={Icons.winner} style={styles.image} />
       <ResultItem winner={winner} AIScore={AIScore} playerScore={playerScore} />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>

@@ -43,10 +43,27 @@ export const styles = StyleSheet.create({
   moveText: {
     fontSize: 16,
   },
+  imageBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   text: {
     fontSize: 18,
     alignSelf: 'center',
     marginBottom: 20,
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 23,
+    fontWeight: '600',
+  },
+  highlight: {
+    backgroundColor: Colors.primary,
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
   },
 
 });

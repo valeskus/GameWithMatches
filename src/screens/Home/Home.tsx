@@ -1,7 +1,8 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { Image, SafeAreaView, Text, View } from 'react-native';
 
 import { Button } from '@UI/Button';
+import { Icons } from '@UI/Icons';
 
 import { styles } from './styles';
 import { useHomeController } from './useHomeController';
@@ -12,7 +13,8 @@ export function Home(): JSX.Element {
   return (
     <SafeAreaView style={styles.homeScreen}>
       <View style={styles.homeScreenItem}>
-        <Text>Game with Matches</Text>
+        <Image source={Icons.matchbox} style={styles.image} />
+        <Text style={styles.title}>Game with Matches</Text>
       </View>
       <View style={styles.menuList}>
         <View style={styles.menuItem}>
