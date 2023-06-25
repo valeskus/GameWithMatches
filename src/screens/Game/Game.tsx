@@ -24,7 +24,7 @@ export function Game(): JSX.Element {
     playerLastMove,
     playerScore,
     matchesLeft,
-    matchesPerMove,
+    availableMatchesPerMove,
     isAIMove,
   } = useGameController();
 
@@ -71,7 +71,7 @@ export function Game(): JSX.Element {
           <GamePad
             onPlayerMove={onPlayerMove}
             allMatchesCount={matchesLeft}
-            availableMatchesPerMove={matchesPerMove}
+            availableMatchesPerMove={availableMatchesPerMove}
           />
         )}
         <View style={styles.scoreContainer}>

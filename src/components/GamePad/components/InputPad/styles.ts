@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { Colors } from '@UI/Colors';
+
 export const styles = StyleSheet.create({
   gamePadContainer: {
     alignItems: 'center',
@@ -22,7 +24,7 @@ export const styles = StyleSheet.create({
     marginRight: 10,
   },
   error: {
-    color: 'red',
+    color: Colors.accent,
     fontSize: 15,
 
     position: 'absolute',

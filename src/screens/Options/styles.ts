@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     height: 90,
   },
   error: {
-    color: 'red',
+    color: Colors.accent,
     fontSize: 15,
   },
   buttonContainer: {

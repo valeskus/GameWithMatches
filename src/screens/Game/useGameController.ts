@@ -110,6 +110,6 @@ export const useGameController = () => {
     playerLastMove,
     playerScore,
     matchesLeft,
-    matchesPerMove: options.matchesPerMove,
+    availableMatchesPerMove: matchesLeft > options.matchesPerMove ? options.matchesPerMove : matchesLeft,
   };
 };

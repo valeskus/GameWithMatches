@@ -4,4 +4,5 @@ export const Colors = {
   shadow: '#9492AB',
   text: '#4B4B4D',
   primary: '#D2CFFF',
+  accent: '#F95D75',
 };

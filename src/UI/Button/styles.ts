@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   disabled: {
-    backgroundColor: 'red',
+    backgroundColor: Colors.accent,
   },
 });
