@@ -40,18 +40,3 @@ export class AI {
     });
   };
 }
-// setTimeout(() => {
-//   if (matchesLeft % 2 === 0) {
-//     resolve(Math.floor(Math.random() * pickLimit) + 1);
-//   } else {
-//     let quotient = Math.floor(matchesLeft / (pickLimit + 1));
-//     let remainder = matchesLeft % (pickLimit + 1);
-
-//     if (quotient % 2 === 0) {
-//       resolve(remainder);
-//     } else {
-//       resolve(remainder + 1);
-//     }
-//   }
-
-// }, 2000);
