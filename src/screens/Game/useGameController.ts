@@ -38,7 +38,8 @@ export const useGameController = () => {
     setIsAIMove(true);
 
     const move = await ai.pick({
-      matchesLeft,
+      matchesLeft: matchesCount,
+      allMatches: options.allMatches,
       aiNumberOfMatches: AIScore,
       pickLimit: options.matchesPerMove,
     });
